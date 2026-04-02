@@ -167,101 +167,60 @@
             </a>
         </div>
     </div>
-
-    <script>
-        // Configuration - customize these values
-        const config = {
-            googleFormUrl: '[forms.gle](https://forms.gle/9C3ArTVap3WGHFgc8)',
-            imageUrl: 'SQUID GAME FINAL_page-0001.jpg',
-            message: `🔥 TECH FEST PRESENTS: SQUID GAME CHALLENGE 🔥
+ <script>
+const config = {
+    googleFormUrl: 'https://forms.gle/9C3ArTVap3WGHFgc8',
+    imageUrl: 'SQUID GAME FINAL_page-0001.jpg',
+    message: `🔥 *TECH FEST PRESENTS: SQUID GAME CHALLENGE* 🔥
 
 🎯 Ready to test your speed, strategy & teamwork?
 Step into the ultimate survival-style competition inspired by Squid Game!
 
-🏆 Prize Pool: ₹4500
+🏆 *Prize Pool: ₹4500*
 🥇 1st – ₹3000
 🥈 2nd – ₹1000
 🥉 3rd – ₹500
 
-⚡️ Game Format:
+⚡️ *Game Format:*
 • Multiple thrilling rounds (strategy + speed based)
 • Elimination style challenges inspired by classic games
-• Lowest time wins ⏱️
+• *Lowest time wins* ⏱️
 
-👥 Team Size: 3 Players
-💰 Entry Fee: ₹100 per team
+👥 *Team Size:* 3 Players
+💰 *Entry Fee:* ₹100 per team
 
-📍 Venue: Shri Ram Institute of Technology, Room G-27
+📍 *Venue:* Shri Ram Institute of Technology, Room G-27
 
 📅 Limited slots — first come, first serve!
 
-👉 Register Now:
-[forms.gle](https://forms.gle/9C3ArTVap3WGHFgc8)
+👉 *Register Now:*
+https://forms.gle/9C3ArTVap3WGHFgc8
 
 📞 Contact: 9931798085 | 8827280116
 
-🚨 Don't miss this chance to compete, survive & win BIG!
-Form your team and enter the game now!`
-        };
+🚨 Don’t miss this chance to compete, survive & win BIG!
+*Form your team and enter the game now!*`
+};
 
-        async function shareOnWhatsApp() {
-            // Check if Web Share API is available (mobile devices)
-            if (navigator.share && navigator.canShare) {
-                try {
-                    // Try to fetch the image and share with it
-                    const response = await fetch(config.imageUrl);
-                    const blob = await response.blob();
-                    const file = new File([blob], 'squid-game-event.jpg', { type: 'image/jpg' });
-                    
-                    const shareData = {
-                        text: config.message,
-                        files: [file]
-                    };
-                    
-                    // Check if we can share files
-                    if (navigator.canShare(shareData)) {
-                        await navigator.share(shareData);
-                        return;
-                    }
-                } catch (err) {
-                    console.log('File sharing failed, trying text only:', err);
-                }
-                
-                // Fallback: Share text only via Web Share API
-                try {
-                    await navigator.share({
-                        text: config.message
-                    });
-                    return;
-                } catch (err) {
-                    console.log('Web Share failed:', err);
-                }
-            }
-            
-            // Fallback for desktop or if Web Share API fails
-            // Copy image to clipboard and open WhatsApp
-            try {
-                const response = await fetch(config.imageUrl);
-                const blob = await response.blob();
-                await navigator.clipboard.write([
-                    new ClipboardItem({ 'image/jpg': blob })
-                ]);
-                alert('📷 Image copied to clipboard!\n\nWhatsApp will open now. Paste the image (Ctrl+V / ⌘+V) in your chat along with the message.');
-            } catch (err) {
-                console.log('Could not copy image:', err);
-            }
-            
-            // Open WhatsApp with the text message
-            const encodedMessage = encodeURIComponent(config.message);
-            const whatsappUrl = `[api.whatsapp.com](https://api.whatsapp.com/send?text=${encodedMessage})`;
-            window.open(whatsappUrl, '_blank');
-        }
+function shareOnWhatsApp() {
+    const encodedMessage = encodeURIComponent(config.message);
 
-        // Initialize page with config values
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('shareMessage').textContent = config.message;
-            document.getElementById('shareImage').src = config.imageUrl;
-        });
-    </script>
+    // Mobile → opens app
+    // Desktop → opens WhatsApp Web
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const whatsappUrl = isMobile
+        ? `https://wa.me/?text=${encodedMessage}`
+        : `https://web.whatsapp.com/send?text=${encodedMessage}`;
+
+    window.location.href = whatsappUrl;
+}
+
+// Init content
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('shareMessage').textContent = config.message;
+    document.getElementById('shareImage').src = config.imageUrl;
+});
+</script>
 </body>
 </html>
