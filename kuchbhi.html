@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Share</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .preview-card {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #25D366;
+        }
+
+        .preview-card img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .preview-card .message {
+            text-align: left;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-form {
+            background: #4285F4;
+            color: white;
+        }
+
+        .btn-form:hover {
+            background: #3367D6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.4);
+        }
+
+        .btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .share-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .btn {
+                padding: 14px 25px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📢 Share with Friends</h1>
+        <p>Share our event details or fill out the registration form!</p>
+
+        <!-- Preview of what will be shared -->
+        <div class="preview-card">
+            <img src="SQUID GAME FINAL_page-0001.jpg.jpeg" alt="Event Image" id="shareImage">
+            <div class="message" id="shareMessage"></div>
+        </div>
+
+        <div class="buttons">
+            <!-- WhatsApp Share Button -->
+            <button class="btn btn-whatsapp" onclick="shareOnWhatsApp()">
+                <svg viewBox="0 0 24 24" xmlns="[w3.org](http://www.w3.org/2000/svg)">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Share on WhatsApp
+            </button>
+            <p class="share-note">📷 Image will be copied - paste it in WhatsApp after sharing!</p>
+
+            <!-- Google Form Button -->
+            <a href="[forms.gle](https://forms.gle/9C3ArTVap3WGHFgc8)" target="_blank" rel="noopener noreferrer" class="btn btn-form">
+                <svg viewBox="0 0 24 24" xmlns="[w3.org](http://www.w3.org/2000/svg)">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                </svg>
+                Open Registration Form
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Configuration - customize these values
+        const config = {
+            googleFormUrl: '[forms.gle](https://forms.gle/9C3ArTVap3WGHFgc8)',
+            imageUrl: 'SQUID GAME FINAL_page-0001.jpg.jpeg',
+            message: `🔥 TECH FEST PRESENTS: SQUID GAME CHALLENGE 🔥
+
+🎯 Ready to test your speed, strategy & teamwork?
+Step into the ultimate survival-style competition inspired by Squid Game!
+
+🏆 Prize Pool: ₹4500
+🥇 1st – ₹3000
+🥈 2nd – ₹1000
+🥉 3rd – ₹500
+
+⚡️ Game Format:
+• Multiple thrilling rounds (strategy + speed based)
+• Elimination style challenges inspired by classic games
+• Lowest time wins ⏱️
+
+👥 Team Size: 3 Players
+💰 Entry Fee: ₹100 per team
+
+📍 Venue: Shri Ram Institute of Technology, Room G-27
+
+📅 Limited slots — first come, first serve!
+
+👉 Register Now:
+[forms.gle](https://forms.gle/9C3ArTVap3WGHFgc8)
+
+📞 Contact: 9931798085 | 8827280116
+
+🚨 Don't miss this chance to compete, survive & win BIG!
+Form your team and enter the game now!`
+        };
+
+        async function shareOnWhatsApp() {
+            // Check if Web Share API is available (mobile devices)
+            if (navigator.share && navigator.canShare) {
+                try {
+                    // Try to fetch the image and share with it
+                    const response = await fetch(config.imageUrl);
+                    const blob = await response.blob();
+                    const file = new File([blob], 'squid-game-event.jpg', { type: 'image/jpeg' });
+                    
+                    const shareData = {
+                        text: config.message,
+                        files: [file]
+                    };
+                    
+                    // Check if we can share files
+                    if (navigator.canShare(shareData)) {
+                        await navigator.share(shareData);
+                        return;
+                    }
+                } catch (err) {
+                    console.log('File sharing failed, trying text only:', err);
+                }
+                
+                // Fallback: Share text only via Web Share API
+                try {
+                    await navigator.share({
+                        text: config.message
+                    });
+                    return;
+                } catch (err) {
+                    console.log('Web Share failed:', err);
+                }
+            }
+            
+            // Fallback for desktop or if Web Share API fails
+            // Copy image to clipboard and open WhatsApp
+            try {
+                const response = await fetch(config.imageUrl);
+                const blob = await response.blob();
+                await navigator.clipboard.write([
+                    new ClipboardItem({ 'image/jpeg': blob })
+                ]);
+                alert('📷 Image copied to clipboard!\n\nWhatsApp will open now. Paste the image (Ctrl+V / ⌘+V) in your chat along with the message.');
+            } catch (err) {
+                console.log('Could not copy image:', err);
+            }
+            
+            // Open WhatsApp with the text message
+            const encodedMessage = encodeURIComponent(config.message);
+            const whatsappUrl = `[api.whatsapp.com](https://api.whatsapp.com/send?text=${encodedMessage})`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Initialize page with config values
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('shareMessage').textContent = config.message;
+            document.getElementById('shareImage').src = config.imageUrl;
+        });
+    </script>
+</body>
+</html>
