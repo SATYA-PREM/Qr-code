@@ -144,7 +144,7 @@
 
         <!-- Preview of what will be shared -->
         <div class="preview-card">
-            <img src="SQUID GAME FINAL_page-0001.jpg.jpeg" alt="Event Image" id="shareImage">
+            <img src="SQUID GAME FINAL_page-0001.jpg" alt="Event Image" id="shareImage">
             <div class="message" id="shareMessage"></div>
         </div>
 
@@ -172,7 +172,7 @@
         // Configuration - customize these values
         const config = {
             googleFormUrl: '[forms.gle](https://forms.gle/9C3ArTVap3WGHFgc8)',
-            imageUrl: 'SQUID GAME FINAL_page-0001.jpg.jpeg',
+            imageUrl: 'SQUID GAME FINAL_page-0001.jpg',
             message: `🔥 TECH FEST PRESENTS: SQUID GAME CHALLENGE 🔥
 
 🎯 Ready to test your speed, strategy & teamwork?
@@ -211,7 +211,7 @@ Form your team and enter the game now!`
                     // Try to fetch the image and share with it
                     const response = await fetch(config.imageUrl);
                     const blob = await response.blob();
-                    const file = new File([blob], 'squid-game-event.jpg', { type: 'image/jpeg' });
+                    const file = new File([blob], 'squid-game-event.jpg', { type: 'image/jpg' });
                     
                     const shareData = {
                         text: config.message,
@@ -244,7 +244,7 @@ Form your team and enter the game now!`
                 const response = await fetch(config.imageUrl);
                 const blob = await response.blob();
                 await navigator.clipboard.write([
-                    new ClipboardItem({ 'image/jpeg': blob })
+                    new ClipboardItem({ 'image/jpg': blob })
                 ]);
                 alert('📷 Image copied to clipboard!\n\nWhatsApp will open now. Paste the image (Ctrl+V / ⌘+V) in your chat along with the message.');
             } catch (err) {
